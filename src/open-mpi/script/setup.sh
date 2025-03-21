@@ -41,4 +41,7 @@ for i in $(seq 1 $N); do
     docker exec -it node1 sh -c "echo node$i >> /mpi/hostfile"
 done
 
+# Create output directory in Node 1
+docker exec -it node1 sh -c "mkdir -p /mpi/output"
+
 echo "All $N nodes are set up and ready!"
