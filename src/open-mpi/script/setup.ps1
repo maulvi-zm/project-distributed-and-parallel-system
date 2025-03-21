@@ -50,4 +50,8 @@ for ($i = 1; $i -le $N; $i++) {
     docker exec -it node1 sh -c "echo node${i} >> /mpi/hostfile"
 }
 
+# Create output directory
+Write-Host "Creating output directory..."
+docker exec -it node1 sh -c "mkdir -p /mpi/output"
+
 Write-Host "All $N nodes are set up and ready!"

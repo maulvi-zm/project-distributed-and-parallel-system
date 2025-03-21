@@ -12,6 +12,6 @@ Write-Host "Compiling MPI program on node1..."
 docker exec -it node1 sh -c "mpicc mpi.c -o mpi -lm"
 
 Write-Host "Running MPI program with $N nodes (Test Case: $TESTCASE)..."
-docker exec -it node1 sh -c "mpirun --allow-run-as-root -np $N --hostfile /mpi/hostfile mpi < test_case/case$TESTCASE.txt > out-$TESTCASE.txt"
+docker exec -it node1 sh -c "mpirun --allow-run-as-root -np $N --hostfile /mpi/hostfile mpi < test_case/case$TESTCASE.txt > output/out-$TESTCASE.txt"
 
 Write-Host "Execution complete! Output saved in out-$TESTCASE.txt"
