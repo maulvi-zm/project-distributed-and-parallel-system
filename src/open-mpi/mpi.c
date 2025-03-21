@@ -25,7 +25,7 @@ void update_row(double **D, const int i, const int n, const int k,
   }
 }
 
-void floyd_warshall_parallel(double **D, int q, int r) {
+void floyd_warshall(double **D, int q, int r) {
   int rank, size;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -72,8 +72,7 @@ void floyd_warshall_parallel(double **D, int q, int r) {
 
       if (rank == 0 && i != 0) {
         for (int row = proc_start; row < proc_end; row++) {
-          MPI_Recv(D[row], n, MPI_DOUBLE, i, 0, MPI_COMM_WORLD,
-                   MPI_STATUS_IGNORE);
+          MPI_Recv(D[row], n, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
       } else if (rank == i && i != 0) {
         for (int row = start_row; row < end_row; row++) {
@@ -110,7 +109,7 @@ double **pathfinder_network(double **graph, int n, int q, int r, int rank) {
     MPI_Bcast(D[i], n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
   }
 
-  floyd_warshall_parallel(D, q, r);
+  floyd_warshall(D, q, r);
 
   if (rank == 0) {
     for (int i = 0; i < n; i++) {
@@ -196,7 +195,6 @@ int main(int argc, char **argv) {
   double **pf_net = NULL;
 
   if (rank == 0) {
-    // Only process 0 reads input
     char buffer[1024];
 
     while (scanf("%s", buffer) == 1) {
@@ -220,7 +218,6 @@ int main(int argc, char **argv) {
 
     int n = wordSetSize;
 
-    // Broadcast the size of the matrix to all processes
     MPI_Bcast(&wordSetSize, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     graph = (double **)malloc(n * sizeof(double *));
