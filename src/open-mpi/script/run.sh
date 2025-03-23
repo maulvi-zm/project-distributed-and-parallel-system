@@ -12,4 +12,4 @@ N=$1 # Number of nodes
 TESTCASE=$2
 
 docker exec -it node1 sh -c "mpicc mpi.c -o mpi -lm"
-docker exec -it node1 sh -c "mpirun --allow-run-as-root -np $N --hostfile /mpi/hostfile mpi < test_case/case$TESTCASE.txt > output/out-$TESTCASE.txt"
+docker exec -it node1 sh -c "mpirun --allow-run-as-root -np $N --hostfile /mpi/hostfile mpi < test_case/case$TESTCASE.txt > output/out-$N-$TESTCASE.txt"

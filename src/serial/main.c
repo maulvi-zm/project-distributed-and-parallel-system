@@ -182,7 +182,7 @@ int main() {
          (similarityEnd - graphInitEnd) / CLOCKS_PER_SEC);
 
   const int q = n - 1;
-  const double r = 1;
+  const double r = _INFINITY;
 
   double **pf_net = pathfinder_network(D, n, q, r);
 
@@ -195,7 +195,11 @@ int main() {
 
   for (int i = 0; i < n; i++) {
     for (int j = i + 1; j < n; j++) {
-      printf("%s %s %f\n", wordSet[i], wordSet[j], pf_net[i][j]);
+      if (pf_net[i][j] == _INFINITY) {
+        printf("%s %s inf\n", wordSet[i], wordSet[j]);
+      } else {
+        printf("%s %s %f\n", wordSet[i], wordSet[j], pf_net[i][j]);
+      }
     }
   }
 

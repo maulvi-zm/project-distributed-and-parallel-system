@@ -1,0 +1,14 @@
+===============================================
+PATHFINDER NETWORK (MPI Parallel Version)
+Number of processes: 2
+===============================================
+Text size:	8000
+Unique words:	3080
+Word Set:	0.02 s
+Graph Init:	0.13 s
+Similarity:	30.86 s
+Pathfinder:	258.26 s
+Total:	289.28 s
+===============================================
+RESULT
+===============================================
