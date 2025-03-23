@@ -50,6 +50,14 @@ Test cases are available in the test_case folder
 
 ## Speed Up Analysis
 
+Testing was runned on below device
+```
+Macbook Pro M4 chip
+CPU: 10 core (4 performance, 6 efficiency)
+GPU: 10 core
+RAM: 16 GB
+```
+
 ### Test Case 1 - Execution Time
 
 | r   | Serial | n=2  | n=4  | n=8  |
