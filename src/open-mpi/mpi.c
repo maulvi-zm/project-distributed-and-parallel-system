@@ -46,8 +46,7 @@ void floyd_warshall(double **D, int q, int r) {
     int rows_per_proc = n / size;
     int remainder = n % size;
 
-    int start_row =
-        rank * rows_per_proc + (rank < remainder ? rank : remainder);
+    int start_row = rank * rows_per_proc + (rank < remainder ? rank : remainder);
     int end_row = start_row + rows_per_proc + (rank < remainder ? 1 : 0);
 
     for (int i = start_row; i < end_row; i++) {
