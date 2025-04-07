@@ -10,7 +10,7 @@
 #define _MAX_DISTANCE 5
 #define _INFINITY DBL_MAX
 
-void blocked_floyd_warshall(double **D, int n, int block_size)
+void blocked_floyd_warshall(double **D, int n, int block_size, int r)
 {
     int n_blocks = n / block_size;
     
@@ -44,8 +44,13 @@ void blocked_floyd_warshall(double **D, int n, int block_size)
         for (int k = 0; k < block_size; k++) {
             for (int i = 0; i < block_size; i++) {
                 for (int j = 0; j < block_size; j++) {
-                    A[i * block_size + j] = min(A[i * block_size + j], 
-                                               A[i * block_size + k] + A[k * block_size + j]);
+                    double a = A[i * block_size + k];
+                    double b = A[k * block_size + j];
+                    double t = pow((pow(a, r) + pow(b, r)), (1.0 / r));
+
+                    if (t < A[i * block_size + j]) {
+                        A[i * block_size + j] = t;
+                    }
                 }
             }
         }
@@ -102,8 +107,13 @@ void blocked_floyd_warshall(double **D, int n, int block_size)
                 for (int k = 0; k < block_size; k++) {
                     for (int i = 0; i < block_size; i++) {
                         for (int j = 0; j < block_size; j++) {
-                            thread_C[i * block_size + j] = min(thread_C[i * block_size + j], 
-                                                            thread_C[i * block_size + k] + A[k * block_size + j]);
+                            double a = thread_C[i * block_size + k];
+                            double b = A[k * block_size + j];
+                            double t = pow((pow(a, r) + pow(b, r)), (1.0 / r));
+
+                            if (t < thread_C[i * block_size + j]) {
+                                thread_C[i * block_size + j] = t;
+                            }
                         }
                     }
                 }
@@ -151,8 +161,13 @@ void blocked_floyd_warshall(double **D, int n, int block_size)
                     for (int k = 0; k < block_size; k++) {
                         for (int i = 0; i < block_size; i++) {
                             for (int j = 0; j < block_size; j++) {
-                                thread_C[i * block_size + j] = min(thread_C[i * block_size + j], 
-                                                               thread_A[i * block_size + k] + thread_B[k * block_size + j]);
+                                double a = thread_A[i * block_size + k];
+                                double b = thread_B[k * block_size + j];
+                                double t = pow((pow(a, r) + pow(b, r)), (1.0 / r));
+
+                                if (t < thread_C[i * block_size + j]) {
+                                    thread_C[i * block_size + j] = t;
+                                }
                             }
                         }
                     }
@@ -179,13 +194,19 @@ void blocked_floyd_warshall(double **D, int n, int block_size)
     free(block_B);
 }
 
-void floyd_warshall(double **D, int n)
+void floyd_warshall(double **D, int n, int r)
 {
     for (int k = 0; k < n; k++) {
         #pragma omp parallel for collapse(2) schedule(dynamic, 32)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                D[i][j] = min(D[i][j], D[i][k] + D[k][j]);
+                double a = D[i][k];
+                double b = D[k][j];
+                double t = pow((pow(a, r) + pow(b, r)), (1.0 / r));
+                
+                if (t < D[i][j]) {
+                    D[i][j] = t;
+                }
             }
         }
     }
@@ -216,12 +237,12 @@ double **pathfinder_network(double **graph, int n, int q, int r)
         }
         
         if (n % block_size != 0) {
-            floyd_warshall(D, n);
+            floyd_warshall(D, n, r);
         } else {
-            blocked_floyd_warshall(D, n, block_size);
+            blocked_floyd_warshall(D, n, block_size, r);
         }
     } else {
-        blocked_floyd_warshall(D, n, block_size);
+        blocked_floyd_warshall(D, n, block_size, r);
     }
     
     #pragma omp parallel for collapse(2)
@@ -385,6 +406,8 @@ int main()
 
     const int q = n - 1;
     const double r = 1;
+    // const double r = 2;
+    // const double r = _INFINITY;
 
     double **pf_net = pathfinder_network(D, n, q, r);
 
