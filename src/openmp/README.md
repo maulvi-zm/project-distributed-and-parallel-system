@@ -71,30 +71,126 @@ RAM: 16 GB
 
 #### Parameter r = 1
 
+- Serial  
+
+  ![Case 1, Serial, r = 1]()
+
+- OpenMP
+
+  ![Case 1, OpenMP, r = 1]()
+
 #### Parameter r = 2
 
+- Serial  
+
+  ![Case 1, Serial, r = 2]()
+
+- OpenMP 
+
+  ![Case 1, OpenMP, r = 2]()
+
 #### Parameter r = inf
+
+- Serial  
+
+  ![Case 1, Serial, r = inf]()
+
+- OpenMP 
+
+  ![Case 1, OpenMP, r = inf]()
 
 ### Test Case 2 (case2.txt)
 
 #### Parameter r = 1
 
+- Serial  
+
+  ![Case 2, Serial, r = 1]()
+
+- OpenMP
+
+  ![Case 2, OpenMP, r = 1]()
+
 #### Parameter r = 2
 
+- Serial  
+
+  ![Case 2, Serial, r = 2]()
+
+- OpenMP 
+
+  ![Case 2, OpenMP, r = 2]()
+
 #### Parameter r = inf
+
+- Serial  
+
+  ![Case 2, Serial, r = inf]()
+
+- OpenMP 
+
+  ![Case 2, OpenMP, r = inf]()
 
 ### Test Case 3 (case3.txt)
 
 #### Parameter r = 1
 
+- Serial  
+
+  ![Case 3, Serial, r = 1]()
+
+- OpenMP
+
+  ![Case 3, OpenMP, r = 1]()
+
 #### Parameter r = 2
 
+- Serial  
+
+  ![Case 3, Serial, r = 2]()
+
+- OpenMP 
+
+  ![Case 3, OpenMP, r = 2]()
+
 #### Parameter r = inf
+
+- Serial  
+
+  ![Case 3, Serial, r = inf]()
+
+- OpenMP 
+
+  ![Case 3, OpenMP, r = inf]()
 
 ### Test Case 4 (case4.txt)
 
 #### Parameter r = 1
 
+- Serial  
+
+  ![Case 4, Serial, r = 1]()
+
+- OpenMP
+
+  ![Case 4, OpenMP, r = 1]()
+
 #### Parameter r = 2
 
+- Serial  
+
+  ![Case 4, Serial, r = 2]()
+
+- OpenMP 
+
+  ![Case 4, OpenMP, r = 2]()
+
 #### Parameter r = inf
+
+- Serial  
+
+  ![Case 4, Serial, r = inf]()
+
+- OpenMP 
+
+  ![Case 4, OpenMP, r = inf]()
