@@ -8,7 +8,7 @@ This program parallelize the Variant of Floyd-Warshall algorithm, Blocked Floyd-
 2. Block size decision: Program calculate block size to fit L1 cache. If the number of nodes in the graph (n) is divisible by the block size, the program will use blocked_floyd_warshall. Otherwise, the program will use floyd_warshall (parallel).
 3. Parallel Floyd-Warshall: When n is not divisible by the block size, the program will run OpenMP's directive for nested loop parallelization, which is #pragma omp parallel for collapse(2) with 2 meaning there are 2 loops to be parallelized.
 4. Blocked Floyd-Warshall: When n is divisible by the block size, the program will run these three parts:
-   - Phase 1 (Dependent Phase): This part doesn't use parallelization ...
+   - Phase 1 (Dependent Phase): This part processes the diagonal block and is not parallelized due to its data dependenc
    - Phase 2 (Partially-Dependent Phase): This part is parallelized in which all blocks in the same row and column as the current k_block are updated.
    - Phase 3 (Independent Phase): This part is parallelized in which the rest of the blocks (not the in the same row and columns as k_block) are updated.
 5. Final update: After the Blocked/Parallel Floyd-Warshall is completed, the program will perform a final update to check whether or not there are any shorter paths from the original graph to the updated graph (D).
