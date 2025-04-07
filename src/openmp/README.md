@@ -41,27 +41,75 @@ Test cases are available in the test_case folder
 
 Testing was done on device with the following specifications
 ```
-Asus TUF Gaming F15
-CPU: Intel CORE i7-12700H, 14 cores, 20 threads
-GPU: NVIDIA GeForce RTX 3050 Ti, 2560 cores
+Macbook Pro M4 chip
+CPU: 10 core (4 performance, 6 efficiency)
+GPU: 10 core
 RAM: 16 GB
 ```
 
 ### Test Case 1 - Execution Time
 
+| r   | Serial | 10 core  |
+|-----|--------|------|
+| r1  |    3   | X |
+| r2  |    3   | X |
+| inf |    1   | X |
+
 ### Test Case 1 - Speed-Up
+
+| r   | 10 core |
+|-----|------|
+| r1  | X |
+| r2  | X |
+| inf | X |
 
 ### Test Case 2 - Execution Time
 
+| r   | Serial | 10 core  |
+|-----|--------|------|
+| r1  |    10   | X |
+| r2  |    10   | X |
+| inf |    3   | X |
+
 ### Test Case 2 - Speed-Up
+
+| r   | 10 core |
+|-----|------|
+| r1  | X |
+| r2  | X |
+| inf | X |
 
 ### Test Case 3 - Execution Time
 
+| r   | Serial | 10 core  |
+|-----|--------|------|
+| r1  |    144   | X |
+| r2  |    143   | X |
+| inf |    41   | X |
+
 ### Test Case 3 - Speed-Up
+
+| r   | 10 core |
+|-----|------|
+| r1  | X |
+| r2  | X |
+| inf | X |
 
 ### Test Case 4 - Execution Time
 
+| r   | Serial | 10 core  |
+|-----|--------|------|
+| r1  |    647   | X |
+| r2  |    646   | X |
+| inf |    185   | X |
+
 ### Test Case 4 - Speed-Up
+
+| r   | 10 core |
+|-----|------|
+| r1  | X |
+| r2  | X |
+| inf | X |
 
 
 
@@ -73,7 +121,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 1, Serial, r = 1]()
+  ![Case 1, Serial, r = 1](img/out-n1-r1-1.png)
 
 - OpenMP
 
@@ -83,7 +131,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 1, Serial, r = 2]()
+  ![Case 1, Serial, r = 2](img/out-n1-r2-1.png)
 
 - OpenMP 
 
@@ -93,7 +141,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 1, Serial, r = inf]()
+  ![Case 1, Serial, r = inf](img/out-n1-rinf-1.png)
 
 - OpenMP 
 
@@ -105,7 +153,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 2, Serial, r = 1]()
+  ![Case 2, Serial, r = 1](img/out-n1-r1-2.png)
 
 - OpenMP
 
@@ -115,7 +163,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 2, Serial, r = 2]()
+  ![Case 2, Serial, r = 2](img/out-n1-r2-2.png)
 
 - OpenMP 
 
@@ -125,7 +173,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 2, Serial, r = inf]()
+  ![Case 2, Serial, r = inf](img/out-n1-rinf-2.png)
 
 - OpenMP 
 
@@ -137,7 +185,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 3, Serial, r = 1]()
+  ![Case 3, Serial, r = 1](img/out-n1-r1-3.png)
 
 - OpenMP
 
@@ -147,7 +195,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 3, Serial, r = 2]()
+  ![Case 3, Serial, r = 2](img/out-n1-r2-3.png)
 
 - OpenMP 
 
@@ -157,7 +205,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 3, Serial, r = inf]()
+  ![Case 3, Serial, r = inf](img/out-n1-rinf-3.png)
 
 - OpenMP 
 
@@ -169,7 +217,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 4, Serial, r = 1]()
+  ![Case 4, Serial, r = 1](img/out-n1-r1-4.png)
 
 - OpenMP
 
@@ -179,7 +227,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 4, Serial, r = 2]()
+  ![Case 4, Serial, r = 2](img/out-n1-r2-4.png)
 
 - OpenMP 
 
@@ -189,7 +237,7 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 4, Serial, r = inf]()
+  ![Case 4, Serial, r = inf](img/out-n1-rinf-4.png)
 
 - OpenMP 
 
