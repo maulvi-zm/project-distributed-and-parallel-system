@@ -182,7 +182,7 @@ int main() {
          (similarityEnd - graphInitEnd) / CLOCKS_PER_SEC);
 
   const int q = n - 1;
-  const double r = _INFINITY;
+  const double r = 1;
 
   double **pf_net = pathfinder_network(D, n, q, r);
 
