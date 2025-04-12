@@ -14,21 +14,29 @@ This program parallelize the Variant of Floyd-Warshall algorithm, Blocked Floyd-
 5. Final update: After the Blocked/Parallel Floyd-Warshall is completed, the program will perform a final update to check whether or not there are any shorter paths from the original graph to the updated graph (D).
 
 ## Prerequisites
+
 - Terminal (MacOS/Linux) or PowerShell (Windows)
 
 ## Usage
 
 ### 1. Set-Up & Run<br>
+
 For MacOS/Linux
+
 ```
 ON PROGRESS
 ```
+
 For Windows using PowerShell
+
 1. Compile the C file (open mp should already included in MSVC)
+
     ```
     ./script/setup.ps1
     ```
+
 2. Run testcase with x in range of (1 - 4)
+
     ```
     ./script/run.ps1 X
     ```
@@ -40,6 +48,7 @@ Test cases are available in the test_case folder
 ## Speed Up Analysis
 
 Testing was done on device with the following specifications
+
 ```
 Macbook Pro M4 chip
 CPU: 10 core (4 performance, 6 efficiency)
@@ -51,25 +60,25 @@ RAM: 16 GB
 
 | r   | Serial | 10 core  |
 |-----|--------|------|
-| r1  |    3   | X |
-| r2  |    3   | X |
-| inf |    1   | X |
+| r1  |    3   | 1.45|
+| r2  |    3   | 1.45 |
+| inf |    1   | 1.26 |
 
 ### Test Case 1 - Speed-Up
 
-| r   | 10 core |
-|-----|------|
-| r1  | X |
-| r2  | X |
-| inf | X |
+| r   | Serial | 10 core | Speed-Up |
+|-----|--------|---------|----------|
+| r1  | 3      | 1.45    | 2.07     |
+| r2  | 3      | 1.45    | 2.07     |
+| inf | 1      | 1.26    | 0.79     |
 
 ### Test Case 2 - Execution Time
 
-| r   | Serial | 10 core  |
-|-----|--------|------|
-| r1  |    10   | X |
-| r2  |    10   | X |
-| inf |    3   | X |
+| r   | Serial | 10 core | Speed-Up |
+|-----|--------|---------|----------|
+| r1  | 10     | 28.10   | 0.36     |
+| r2  | 10     | 28.10   | 0.36     |
+| inf | 3      | 27.82   | 0.11     |
 
 ### Test Case 2 - Speed-Up
 
@@ -83,35 +92,33 @@ RAM: 16 GB
 
 | r   | Serial | 10 core  |
 |-----|--------|------|
-| r1  |    144   | X |
-| r2  |    143   | X |
-| inf |    41   | X |
+| r1  |    144   | 247.30 |
+| r2  |    143   | 251.21 |
+| inf |    41   | 240.02 |
 
 ### Test Case 3 - Speed-Up
 
 | r   | 10 core |
 |-----|------|
-| r1  | X |
-| r2  | X |
-| inf | X |
+| r1  | 0.58 |
+| r2  | 0.57 |
+| inf | 0.17 |
 
 ### Test Case 4 - Execution Time
 
 | r   | Serial | 10 core  |
 |-----|--------|------|
-| r1  |    647   | X |
-| r2  |    646   | X |
-| inf |    185   | X |
+| r1  |    647   | 126.55 |
+| r2  |    646   | 129.05 |
+| inf |    185   | 38.08 |
 
 ### Test Case 4 - Speed-Up
 
-| r   | 10 core |
-|-----|------|
-| r1  | X |
-| r2  | X |
-| inf | X |
-
-
+| r   | Serial | 10 core | Speed-Up |
+|-----|--------|---------|----------|
+| r1  | 647    | 126.55  | 5.11     |
+| r2  | 646    | 129.05  | 5.01     |
+| inf | 185    | 38.08   | 4.86     |
 
 ## Results
 
@@ -121,31 +128,31 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 1, Serial, r = 1](img/out-n1-r1-1.png)
+  ![Case 1, Serial, r = 1](img/serial/out-n1-r1-1.png)
 
 - OpenMP
 
-  ![Case 1, OpenMP, r = 1]()
+  ![Case 1, OpenMP, r = 1](img/openmp/out-n1-r1-1.png)
 
 #### Parameter r = 2
 
 - Serial  
 
-  ![Case 1, Serial, r = 2](img/out-n1-r2-1.png)
+  ![Case 1, Serial, r = 2](img/serial/out-n1-r2-1.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 1, OpenMP, r = 2]()
+  ![Case 1, OpenMP, r = 2](img/openmp/out-n1-r2-1.png)
 
 #### Parameter r = inf
 
 - Serial  
 
-  ![Case 1, Serial, r = inf](img/out-n1-rinf-1.png)
+  ![Case 1, Serial, r = inf](img/serial/out-n1-rinf-1.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 1, OpenMP, r = inf]()
+  ![Case 1, OpenMP, r = inf](img/openmp/out-n1-rinf-1.png)
 
 ### Test Case 2 (case2.txt)
 
@@ -153,31 +160,31 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 2, Serial, r = 1](img/out-n1-r1-2.png)
+  ![Case 2, Serial, r = 1](img/serial/out-n1-r1-2.png)
 
 - OpenMP
 
-  ![Case 2, OpenMP, r = 1]()
+  ![Case 2, OpenMP, r = 1](img/openmp/out-n1-r1-2.png)
 
 #### Parameter r = 2
 
 - Serial  
 
-  ![Case 2, Serial, r = 2](img/out-n1-r2-2.png)
+  ![Case 2, Serial, r = 2](img/serial/out-n1-r2-2.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 2, OpenMP, r = 2]()
+  ![Case 2, OpenMP, r = 2](img/openmp/out-n1-r2-2.png)
 
 #### Parameter r = inf
 
 - Serial  
 
-  ![Case 2, Serial, r = inf](img/out-n1-rinf-2.png)
+  ![Case 2, Serial, r = inf](img/serial/out-n1-rinf-2.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 2, OpenMP, r = inf]()
+  ![Case 2, OpenMP, r = inf](img/openmp/out-n1-rinf-2.png)
 
 ### Test Case 3 (case3.txt)
 
@@ -185,31 +192,31 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 3, Serial, r = 1](img/out-n1-r1-3.png)
+  ![Case 3, Serial, r = 1](img/serial/out-n1-r1-3.png)
 
 - OpenMP
 
-  ![Case 3, OpenMP, r = 1]()
+  ![Case 3, OpenMP, r = 1](img/openmp/out-n1-r1-3.png)
 
 #### Parameter r = 2
 
 - Serial  
 
-  ![Case 3, Serial, r = 2](img/out-n1-r2-3.png)
+  ![Case 3, Serial, r = 2](img/serial/out-n1-r2-3.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 3, OpenMP, r = 2]()
+  ![Case 3, OpenMP, r = 2](img/openmp/out-n1-r2-3.png)
 
 #### Parameter r = inf
 
 - Serial  
 
-  ![Case 3, Serial, r = inf](img/out-n1-rinf-3.png)
+  ![Case 3, Serial, r = inf](img/serial/out-n1-rinf-3.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 3, OpenMP, r = inf]()
+  ![Case 3, OpenMP, r = inf](img/openmp/out-n1-rinf-3.png)
 
 ### Test Case 4 (case4.txt)
 
@@ -217,28 +224,28 @@ RAM: 16 GB
 
 - Serial  
 
-  ![Case 4, Serial, r = 1](img/out-n1-r1-4.png)
+  ![Case 4, Serial, r = 1](img/serial/out-n1-r1-4.png)
 
 - OpenMP
 
-  ![Case 4, OpenMP, r = 1]()
+  ![Case 4, OpenMP, r = 1](img/openmp/out-n1-r1-4.png)
 
 #### Parameter r = 2
 
 - Serial  
 
-  ![Case 4, Serial, r = 2](img/out-n1-r2-4.png)
+  ![Case 4, Serial, r = 2](img/serial/out-n1-r2-4.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 4, OpenMP, r = 2]()
+  ![Case 4, OpenMP, r = 2](img/openmp/out-n1-r2-4.png)
 
 #### Parameter r = inf
 
 - Serial  
 
-  ![Case 4, Serial, r = inf](img/out-n1-rinf-4.png)
+  ![Case 4, Serial, r = inf](img/serial/out-n1-rinf-4.png)
 
-- OpenMP 
+- OpenMP
 
-  ![Case 4, OpenMP, r = inf]()
+  ![Case 4, OpenMP, r = inf](img/openmp/out-n1-rinf-4.png)
