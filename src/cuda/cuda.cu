@@ -184,7 +184,7 @@ int main() {
     printf("Unique words:\t%d\n", wordSetSize);
 
     clock_t wordSetEnd = clock();
-    printf("Word Set:\t%ld s\n", (wordSetEnd - start) / CLOCKS_PER_SEC);
+    printf("Word Set:\t%ld ms\n", (wordSetEnd - start) * 1000 / CLOCKS_PER_SEC);
 
     int n = wordSetSize;
 
@@ -202,7 +202,7 @@ int main() {
     }
 
     clock_t graphInitEnd = clock();
-    printf("Graph Init:\t%ld s\n", (graphInitEnd - wordSetEnd) / CLOCKS_PER_SEC);
+    printf("Graph Init:\t%ld ms\n", (graphInitEnd - wordSetEnd) * 1000 / CLOCKS_PER_SEC);
 
     double *D = (double *)malloc(n * n * sizeof(double));
 
@@ -239,11 +239,11 @@ int main() {
     cudaCheckError();
 
     clock_t similarityEnd = clock();
-    printf("Similarity:\t%ld s\n", (similarityEnd - graphInitEnd) / CLOCKS_PER_SEC);
+    printf("Similarity:\t%ld ms\n", (similarityEnd - graphInitEnd) * 1000 / CLOCKS_PER_SEC);
 
-    const double r = 1;
+    // const double r = 1;
     // const double r = 2;
-    // const double r = _INFINITY;
+    const double r = _INFINITY;
 
     floyd_warshall_cuda(D, n, r);
 
@@ -256,8 +256,8 @@ int main() {
     }
 
     clock_t pfEnd = clock();
-    printf("Pathfinder:\t%ld s\n", (pfEnd - similarityEnd) / CLOCKS_PER_SEC);
-    printf("Total:\t%ld s\n", (pfEnd - start) / CLOCKS_PER_SEC);
+    printf("Pathfinder:\t%ld ms\n", (pfEnd - similarityEnd) * 1000 / CLOCKS_PER_SEC);
+    printf("Total:\t%ld ms\n", (pfEnd - start) * 1000 / CLOCKS_PER_SEC);
     printf("===============================================\n");
     printf("RESULT\n");
     printf("===============================================\n");
