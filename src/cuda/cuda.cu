@@ -262,8 +262,8 @@ int main() {
     printf("RESULT\n");
     printf("===============================================\n");
 
-    for (int i = 0; i < n / 8; i++) {
-        for (int j = i + 1; j < n / 8; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             if (D[i * n + j] == _INFINITY) {
                 printf("%s %s inf\n", wordSet[i], wordSet[j]);
             } else {
