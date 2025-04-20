@@ -2,7 +2,22 @@
 
 ## Description and Parallelization Explanation
 
-// TODO
+This program implements the Pathfinder Network (PFNET) algorithm, extracting key relationships between words based on their co-occurrence in an input text with the help of AVX2 intrinsics.
+
+Algorithm Overview:
+
+1. Builds a co-occurrence graph based on word proximity (_MAX_DISTANCE).
+2. Calculates an initial distance matrix D where distance = 1 - cosine_similarity (based on co-occurrence vectors).
+3. Computes all-pairs shortest paths using a modified Floyd-Warshall algorithm. Optionally uses blocking/tiling (blocked_floyd_warshall) for better cache performance during the Floyd-Warshall computation if the matrix size is divisible by the block size.
+
+Parallelization Explanation:
+The key areas vectorized using AVX2 intrinsics (_mm256_* on __m256d types) are:
+
+1. Minkowski Distance Calculation: The avx2_minkowski_distance function is main parallelization we applied to the modified Floyd-Warshall. It uses specific AVX2 code paths for r=1, 2, infinity (add, mul/add/sqrt, max respectively) and falls back to scalar pow otherwise.
+2. Floyd-Warshall Inner Loop: The `j` loop in both floyd_warshall and within the block processing of blocked_floyd_warshall is fully vectorized. This processes 4 distance updates (load, minkowski, min, store) concurrently per iteration, significantly increasing throughput. We used loadu and storeu for memory access within these loops.
+3. Cosine Similarity: The dot product and vector norms calcuation is accelerated using AVX2's multiply and add function.
+
+And as mentioned above we implemented cache blocking (blocked_floyd_warshall). This isn't parallelism itself, but a memory optimization. By processing the matrix in smaller tiles designed to fit within the L1 cache, we intend to improve data locality and allowing the vectorized loops operating on the blocks to sustain higher performance.
 
 ## Prerequisites
 
