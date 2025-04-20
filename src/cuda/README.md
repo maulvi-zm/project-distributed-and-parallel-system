@@ -2,7 +2,37 @@
 
 ## Description and Parallelization Explanation
 
-DESC
+This program implements the Pathfinder Network (PFNET) algorithm using CUDA parallelization to efficiently analyze relationships between words in a text. It's designed to leverage GPU acceleration for processing large text datasets and identifying semantic patterns through graph-based analysis.
+
+Algorithm Overview:
+
+1. Text Processing & Graph Construction:
+  Reads input words and builds a unique lexicon
+  Constructs a co-occurrence graph where connections represent words appearing within a defined proximity window (_MAX_DISTANCE = 5)
+  Weights graph edges based on co-occurrence frequency
+2. Distance Calculation:
+  Computes cosine similarity between word vectors using a CUDA kernel (cosine_similarity_kernel)
+  Converts similarities to distances using the inverse relationship (distance = 1 - similarity)
+3. Path Analysis:
+  Implements a CUDA-accelerated Floyd-Warshall algorithm for all-pairs shortest paths
+  Supports different distance metrics through the Minkowski r-parameter (Manhattan, Euclidean, or Chebyshev)
+  Uses atomic operations to safely update shared distance values across threads
+
+
+CUDA Implementation Highlights:
+
+1. Parallel Cosine Similarity:
+  Each thread computes similarity between a unique word pair
+  Grid and block dimensions are configured to efficiently distribute computation across GPU threads
+  Leverages GPU's parallel architecture for vector dot products and norm calculations
+2. Optimized Floyd-Warshall:
+  Uses a custom atomicMinDouble function for thread-safe minimum value updates
+  Implements different distance metrics based on the r-parameter (1.0 for Manhattan, 2.0 for Euclidean, infinity for Chebyshev)
+3. Memory Management:
+  Synchronizes execution between kernel launches to ensure consistency
+  Releases device memory appropriately to prevent leaks
+
+This implementation demonstrates how CUDA can significantly accelerate graph algorithms and similarity computations, making it possible to analyze large text corpora efficiently. The performance measurements shown in the code (with millisecond timing for each phase) highlight the benefits of GPU parallelization for this computationally intensive task.
 
 ## Prerequisites
 
